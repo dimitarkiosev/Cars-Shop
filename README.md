@@ -1,2 +1,2 @@
 # Cars-Shop
-Cars Shop Project
+Cars Shop Project - SoftUni
