@@ -5,8 +5,6 @@ from cars.accounts.forms import UserCreateForm, UserEditForm
 
 UserModel = get_user_model()
 
-# dkiosev - Road@Cars
-# mkioseva - FFaP4btUybGvgxj
 
 
 @admin.register(UserModel)
