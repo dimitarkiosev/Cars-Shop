@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+    <section id="car-details">
+        <div class="info-section">
+            <div class="car-header">
+                <a href="/media/{{ car.cimage }}" target="_blank"><img class="car-img" src="/media/{{ car.cimage }}"
+                                                                       alt='{{ car.manufacturer }} '/></a>
+                <p><span class="description">{{ car.manufacturer }} {{ car.model }}</span></p>
+                <p><span class="description">year: {{ car.year }}</span></p>
+                <p><span class="description">fuel: {{ car.fuel }}</span></p>
+                <p><span class="description">power: {{ car.power }} hp</span></p>
+                <p><span class="description">mileage: {{ car.mileage | intcomma }} km</span></p>
+                <p><span class="description">price: $ {{ car.price | intcomma }}</span></p>
+                <br/>
+                <p><span class="description">Description: {{ car.description }}</span></p>
+                <h1>Contact</h1>
+                {% if owner.first_name and owner.last_name %}
+                    <p><span class="contact-description">{{ owner.first_name }} {{ owner.last_name }}</span>
+                        <a href="{% url 'catalog user' pk=owner.pk %}" class="edit-button">{% if is_owner %}My{% else %}User{% endif %} Cars</a></p>
+                {% else %}
+                    <p><span class="contact-description">{{ owner.username }}</span>
+                        <a href="{% url 'catalog user' pk=owner.pk %}" class="edit-button">All User Cars</a></p>
+                {% endif %}
+                {% if owner.phone %}
+                    <p><span class="contact-description">{{ owner.phone }}</span></p>
+                {% endif %}
+                {% if owner.email %}
+                    <p><span class="contact-description">{{ owner.email }}</span></p>
+                {% endif %}
+            </div>
+            {% if is_owner %}
+                <div class="buttons">
+                    <a href="{% url 'edit car' pk=car.pk %}" class="edit-button">Edit</a>
+                    <a href="{% url 'delete car' pk=car.pk %}" class="delete-button">Delete</a>
+                </div>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+                <form method="POST" action="{% url 'comment car' pk=car.id %}">
+
+                        {{ comment_form.as_p }}
+                    <div class="buttons">
+                        <input class="comment-button" type="submit" value="Add comment">
+                    </div>
+                    {% csrf_token %}
+                </form>
+            {% endif %}
+            <p><span class="comment-text"> -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -</span></p>
+            {% for comment in comments %}
+                <p><span class="comment-info">{{ comment.user }}, <i>{{ comment.publication_date_time }}</i></span></p>
+                <p><span class="comment-text">{{ comment.text }}</span></p>
+                <p><span class="comment-text"> -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -</span></p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+    {% if count %}
+        <p class="no-articles">Liked Cars</p>
+    {% else %}
+        <p class="no-articles">No cars yet</p>
+    {% endif %}
+    <section id="catalogue">
+
+        {% for car in cars %}
+            {% if car.is_liked_by_user %}
+                <div class="car-card">
+                    <h3>{{ car.manufacturer }} {{ car.model }}</h3>
+                    <h1>{{ car.year }}, {{ car.fuel }}</h1>
+                    <div class="image-wrap">
+                        <img src="/media/{{ car.cimage }}" alt="Sport Car">
+                    </div>
+                    <div class="like-price">
+                        <span class="left"></span>
+                        <span class="right">
+                        Price: $ {{ car.price | intcomma }}
+                    </span>
+                    </div>
+                    <div class="details-buttons">
+                        <a href="{% url 'details car' pk=car.pk %}" class="details-btn">Details</a>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section id="register-page" class="content auth">
+        <div class="container">
+            <h1>{{ brand.name }}</h1>
+            <a href="{% url 'edit brand' pk=brand.pk %}">
+                <input class="btn" type="submit" value="Edit">
+            </a>
+            <a href="{% url 'delete brand' pk=brand.pk %}">
+                <input class="btn decline" type="submit" value="Delete">
+            </a>
+        </div>
+    </section>
+{% endblock %}

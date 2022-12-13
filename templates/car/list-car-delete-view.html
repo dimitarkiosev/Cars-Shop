@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section id="create-page" class="auth">
+        <div class="container">
+            <h1>Are you sure you want to delete <b>{{ brand.name }}</b>?</h1>
+            <form id="delete" method="post" action="{% url 'delete brand' pk=brand.pk %}">
+                {{ form }}
+                <input class="btn submit" type="submit" value="Yes">
+                {% csrf_token %}
+            </form>
+            <a href="{% url 'all brand' %}">
+                <input class="btn decline" type="submit" value="No">
+            </a>
+        </div>
+    </section>
+{% endblock %}

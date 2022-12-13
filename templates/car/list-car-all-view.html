@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="all-card">
+        <h1>Manufacturer List</h1>
+        <ul>
+            {% for car in allCars %}
+                <p><a href="{% url 'one brand' pk=car.pk %}">{{ car.name }}</a></p>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

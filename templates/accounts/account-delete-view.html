@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section id="create-page" class="auth">
+        <div class="container">
+            <h1>Are you sure you want to delete your profile?</h1>
+            <form id="delete" method="post" action="{% url 'delete user' pk=object.pk %}">
+                <input class="btn submit" type="submit" value="Yes">
+                {% csrf_token %}
+            </form>
+            <a href="{% url 'details user' pk=request.user.pk %}">
+                <input class="btn decline" type="submit" value="No">
+            </a>
+        </div>
+    </section>
+{% endblock %}

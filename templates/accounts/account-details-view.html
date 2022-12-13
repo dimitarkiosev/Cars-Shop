@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <section id="car-details">
+        <h1>Profile Details</h1>
+        <div class="info-section">
+            <div class="car-header">
+                <!-- IMG -->
+                {% if object.photo %}
+                    <img class="acc-img" src="/media/{{ object.photo }}" alt='profile-image'/>
+                {% else %}
+                    <img class="acc-img" src="{% static '/images/default-profile.png' %}" alt='profile-image'/>
+                {% endif %}
+                <!-- NAME -->
+                <h1>
+                    {% if object.first_name %}
+                        {{ object.first_name }}
+                    {% endif %}
+                    {% if object.last_name %}
+                        {{ object.last_name }}
+                    {% endif %}
+                </h1>
+                <p class="description">Username: {{ object.username }}</p>
+                <!-- EMAIL -->
+                {% if object.email %}
+                    <p class="description">Email: {{ object.email }}</p>
+                {% endif %}
+                <!-- PHONE -->
+                {% if object.phone %}
+                    <p class="description">Phone: {{ object.phone }}</p>
+                {% endif %}
+                <div class="buttons">
+                    <a href="{% url 'catalog user' pk=object.pk %}" class="edit-button">User Cars</a>
+                </div>
+                <!-- Edit/Delete buttons -->
+                {% if is_owner %}
+                    <div class="buttons">
+                        <a href="{% url 'edit user' pk=request.user.pk %}" class="edit-button">Edit</a>
+                        <a href="{% url 'delete user' pk=request.user.pk %}" class="delete-button">Delete</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

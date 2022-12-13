@@ -1,0 +1,39 @@
+.material-icons {
+    font-family: "Material Icons";
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-feature-settings: "liga";
+    font-feature-settings: "liga";
+    text-align: left;
+}
+
+.green {
+    color: #7fff00;
+}
+
+.material-icons span.favorite:before {
+	position:absolute;
+	font-size:1rem;
+	right:.25rem;
+	top:.25rem
+}
+.material-icons.favorite:before {
+	content:"\e87d"
+}
+.material-icons.favorite_border:before {
+	content:"\e87e"
+}
+.material-icons.favorite_outline:before {
+	content:"\e87e"
+}

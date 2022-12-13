@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+    <section id="register-page" class="content auth">
+        <div class="container">
+            <div class="brand-logo"></div>
+            <h1>Create Profile</h1>
+            <form method="POST" action="{% url 'register user' %}">
+{#                {{ form.username.error }}#}
+{#                {{ form.username | placeholder:'Username' }}#}
+{#                {{ form.email.error }}#}
+{#                {{ form.email | placeholder:'Email' }}#}
+{#                {{ form.password1.errors }}#}
+{#                {{ form.password2.errors }}#}
+{#                {{ form.password1 | placeholder:'Password' }}#}
+{#                {{ form.password2 | placeholder:'Password (again)' }}#}
+                {{ form }}
+                {% csrf_token %}
+                <input class="btn submit" type="submit" value="Create Profile">
+            </form>
+        </div>
+    </section>
+{% endblock %}
