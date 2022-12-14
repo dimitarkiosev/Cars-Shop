@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load humanize %}
 {% load static %}
 {% block content %}
     <section id="car-details">
@@ -28,6 +29,10 @@
                 <!-- PHONE -->
                 {% if object.phone %}
                     <p class="description">Phone: {{ object.phone }}</p>
+                {% endif %}
+                {% if cars_count %}
+                    <p class="description">User cars: {{ cars_count }}</p>
+                    <p class="description">Total value: $ {{ total_value | intcomma }}</p>
                 {% endif %}
                 <div class="buttons">
                     <a href="{% url 'catalog user' pk=object.pk %}" class="edit-button">User Cars</a>

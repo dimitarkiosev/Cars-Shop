@@ -2,6 +2,7 @@ from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views, get_user_model, login
 from cars.accounts.forms import UserCreateForm
+from cars.car.models import Vehicle
 
 UserModel = get_user_model()
 
@@ -33,8 +34,15 @@ class AccountDetailsView(views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        cars = self.object.vehicle_set.all()
+        total_value = sum(x.price for x in cars)
 
         context['is_owner'] = self.request.user == self.object
+        context['cars_count'] = cars.count()
+        context['total_value'] = total_value
+
+        #context['cars_count'] = Vehicle.objects.filter(user=self.object).count()
+
         return context
 
 
