@@ -131,7 +131,7 @@ def car_edit_view(request, pk):
         form = VehicleEditForm(request.POST, request.FILES, instance=car)
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect('details car', pk=car.pk)
 
     context = {
         'form': form,
