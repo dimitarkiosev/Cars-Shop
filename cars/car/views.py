@@ -28,7 +28,7 @@ def catalog_view(request):
         cars = [add_likes_count(car) for car in cars]
         cars = [add_user_liked_photo(car,user) for car in cars]
 
-    paginator = Paginator(cars, 5)
+    paginator = Paginator(cars, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
